@@ -159,7 +159,7 @@ Saisissez « help » pour l'aide.
 cinema=>
 ```
 
-### Create tables (exemples)
+### Create tables (examples)
 
 ```
 cinema=# CREATE TABLE administrators(
@@ -225,5 +225,39 @@ cinema=> \dt
  public | prices_list              | table | sandrine
  public | sessions                 | table | sandrine
 (10 lignes)
+
+```
+### Inserting multiple rows and returning inserted rows (example)
+```
+cinema=# INSERT INTO 
+cinemas_complex (cinema_complex_id, cinema_complex_name, info_id, administrator_id)
+VALUES
+(11, 'Yakijo', 3, 10),
+(2, 'Dabfeed', 8, 9),
+(3, 'Yambee', 7, 5),
+(4, 'Blognation', 3, 7),
+(5, 'Skibox', 6, 7),
+(6, 'Aibox', 4, 4),
+(7, 'Thoughtbeat', 7, 10),
+(8, 'Topicblab', 9, 10),
+(9, 'Livetube', 6, 1),
+(10, 'Gigazoom', 10, 5);
+```
+```
+cinema=# SELECT * FROM cinemas_complex;
+ cinema_complex_id | cinema_complex_name | info_id | administrator_id 
+-------------------+---------------------+---------+------------------
+                 1 | toto                |       3 |                4
+                11 | Yakijo              |       3 |               10
+                 2 | Dabfeed             |       8 |                9
+                 3 | Yambee              |       7 |                5
+                 4 | Blognation          |       3 |                7
+                 5 | Skibox              |       6 |                7
+                 6 | Aibox               |       4 |                4
+                 7 | Thoughtbeat         |       7 |               10
+                 8 | Topicblab           |       9 |               10
+                 9 | Livetube            |       6 |                1
+                10 | Gigazoom            |      10 |                5
+(11 lignes)
 
 ```
