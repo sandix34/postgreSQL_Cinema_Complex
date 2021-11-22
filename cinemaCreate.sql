@@ -1,5 +1,5 @@
 -- Create database --
-
+-- prerequisite: non-existent base --
 CREATE DATABASE cinema
 
 -- Create tables --
@@ -93,6 +93,7 @@ REFERENCES customers(customer_id));
 
 --INSERT--
 
+-- (password_encryption = "scram-sha-256"--
 INSERT INTO administrators (administrator_id, administrator_first_name, administrator_last_name, administrator_password) VALUES (1, 'Corri', 'Taberner', '173449d2ec5998419a4929e2c8a4cac396828fde85b45c53fe84017bb6fabf1c');
 INSERT INTO administrators (administrator_id, administrator_first_name, administrator_last_name, administrator_password) VALUES (2, 'Wilfrid', 'Filip', 'c9e4e050e8716407aaa98dca4ef3da51205da46834b725c0ee24f0bc55f03c9a');
 INSERT INTO administrators (administrator_id, administrator_first_name, administrator_last_name, administrator_password) VALUES (3, 'Julieta', 'Toynbee', '875e1409ef14e912a4256f050d6427b5e96d849b220e14372a7a5bca3fb94c6b');
@@ -129,9 +130,8 @@ INSERT INTO cinemas_complex (cinema_complex_id, cinema_complex_name, info_id, ad
 INSERT INTO movies (movie_id, movie_name, movie_time) VALUES (1, 'November', '10:01 PM');
 INSERT INTO movies (movie_id, movie_name, movie_time) VALUES (2, 'Marianne & Juliane (Die Bleierne Zeit)', '10:55 PM');
 INSERT INTO movies (movie_id, movie_name, movie_time) VALUES (3, 'Wrestling Queens', '6:24 AM');
-INSERT INTO movies (movie_id, movie_name, movie_time) VALUES (4, 'Once You''re Born You Can No Longer Hide (Quando sei nato non puoi più nasconderti)', '8:01 PM');
+INSERT INTO movies (movie_id, movie_name, movie_time) VALUES (4, 'Once You', '8:01 PM');
 INSERT INTO movies (movie_id, movie_name, movie_time) VALUES (5, 'Suspended Animation', '1:04 PM');
-
 
 INSERT INTO movies_theaters (movie_theater_id, movie_theater_hall_number, movie_theater_nbr_places, cinema_complex_id, movie_id) VALUES (1, 4, 1, 4, 1);
 INSERT INTO movies_theaters (movie_theater_id, movie_theater_hall_number, movie_theater_nbr_places, cinema_complex_id, movie_id) VALUES (2, 8, 5, 3, 5);
@@ -149,13 +149,14 @@ INSERT INTO sessions (session_id, session_start_movie) VALUES (2, '3:49 AM');
 INSERT INTO sessions (session_id, session_start_movie) VALUES (3, '6:02 PM');
 INSERT INTO sessions (session_id, session_start_movie) VALUES (4, '9:56 AM');
 
-INSERT INTO movies_theaters_sessions (movie_theater_session_quantity, movie_theater_id, session_id) VALUES (8, 10, 2);
-INSERT INTO movies_theaters_sessions (movie_theater_session_quantity, movie_theater_id, session_id) VALUES (2, 10, 4);
-INSERT INTO movies_theaters_sessions (movie_theater_session_quantity, movie_theater_id, session_id) VALUES (19, 6, 2);
-INSERT INTO movies_theaters_sessions (movie_theater_session_quantity, movie_theater_id, session_id) VALUES (10, 5, 3);
-INSERT INTO movies_theaters_sessions (movie_theater_session_quantity, movie_theater_id, session_id) VALUES (22, 10, 1);
-INSERT INTO movies_theaters_sessions (movie_theater_session_quantity, movie_theater_id, session_id) VALUES (19, 10, 3);
+INSERT INTO movies_theaters_sessions (movie_theater_session_id, movie_theater_session_quantity, movie_theater_id, session_id) VALUES (1, 8, 10, 2);
+INSERT INTO movies_theaters_sessions (movie_theater_session_id, movie_theater_session_quantity, movie_theater_id, session_id) VALUES (2, 2, 10, 4);
+INSERT INTO movies_theaters_sessions (movie_theater_session_id, movie_theater_session_quantity, movie_theater_id, session_id) VALUES (3, 19, 6, 2);
+INSERT INTO movies_theaters_sessions (movie_theater_session_id, movie_theater_session_quantity, movie_theater_id, session_id) VALUES (4, 10, 5, 3);
+INSERT INTO movies_theaters_sessions (movie_theater_session_id, movie_theater_session_quantity, movie_theater_id, session_id) VALUES (5, 22, 10, 1);
+INSERT INTO movies_theaters_sessions (movie_theater_session_id, movie_theater_session_quantity, movie_theater_id, session_id) VALUES (6, 19, 10, 3);
 
+-- (password_encryption = "scram-sha-256" --
 INSERT INTO customers (customer_id, customer_first_name, customer_last_name, customer_email, customer_age, customer_password, session_id) VALUES (1, 'Betteann', 'Bloy', 'bbloy0@imdb.com', 94, '35a3ae9e671134c659e0c1d56a748582ae410bf0889c18862090ffbc3eefe351', 1);
 INSERT INTO customers (customer_id, customer_first_name, customer_last_name, customer_email, customer_age, customer_password, session_id) VALUES (2, 'Sonya', 'Reast', 'sreast1@exblog.jp', 33, 'c4a95b8803a93892ed7631c35e32caa75b86cc8932d727c751468d8efa8a1743', 3);
 INSERT INTO customers (customer_id, customer_first_name, customer_last_name, customer_email, customer_age, customer_password, session_id) VALUES (3, 'Penelope', 'Walisiak', 'pwalisiak2@live.com', 34, 'd646c01c9b3c7a4daf508423675268d83bd46f22b80e848b5f97f0887e5583eb', 2);
@@ -163,16 +164,16 @@ INSERT INTO customers (customer_id, customer_first_name, customer_last_name, cus
 INSERT INTO customers (customer_id, customer_first_name, customer_last_name, customer_email, customer_age, customer_password, session_id) VALUES (5, 'Kirby', 'Lilloe', 'klilloe4@merriam-webster.com', 35, '83df0311440b35ff7e5bb3b1c5fb54ce871c73c9193b80cebc84ec9acb879794', 1);
 INSERT INTO customers (customer_id, customer_first_name, customer_last_name, customer_email, customer_age, customer_password, session_id) VALUES (6, 'Gasparo', 'Budgen', 'gbudgen5@ovh.net', 88, '0536cfad36d834d99addfc670b28a7a1c5fdcb119b144c10f90f54a243b80c46', 3);
 
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (1, '€9,44', 'rutrum neque', 1);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (2, '€8,80', 'arcu sed', 3);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (3, '€0,14', 'orci pede', 2);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (4, '€4,24', 'id justo', 6);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (5, '€5,88', 'sed sagittis', 5);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (6, '€6,89', 'laoreet ut', 3);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (7, '€9,03', 'vestibulum ante', 5);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (8, '€8,03', 'pulvinar sed', 6);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (9, '€9,94', 'ipsum primis', 2);
-INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (10, '€6,68', 'magnis dis', 2);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (1, 9.44, 'rutrum neque', 1);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (2, 8.80, 'arcu sed', 3);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (3, 0.14, 'orci pede', 2);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (4, 4.24, 'id justo', 6);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (5, 5.88, 'sed sagittis', 5);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (6, 6.89, 'laoreet ut', 3);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (7, 9.03, 'vestibulum ante', 5);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (8, 8.03, 'pulvinar sed', 6);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (9, 9.94, 'ipsum primis', 2);
+INSERT INTO prices_list (price_list_id, price, type_price, customer_id) VALUES (10, 6.68, 'magnis dis', 2);
 
 INSERT INTO payments (payment_id, payment_type, customer_id) VALUES (1, 'volutpat', 2);
 INSERT INTO payments (payment_id, payment_type, customer_id) VALUES (2, 'sit', 3);

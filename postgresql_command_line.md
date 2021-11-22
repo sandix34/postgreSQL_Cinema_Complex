@@ -125,6 +125,18 @@ postgres=# \l
 (4 lignes)
 ```
 
+### Privilege SCRAM-SHA-256 (password_encryption = "scram-sha-256")
+Note that PostgreSQL does not check a password for weakness. He is
+certainly possible to install an extension called passwordcheck.
+
+```
+cinema=# SHOW password_encryption;
+password_encryption
+---------------------
+scram-sha-256
+(1 ligne)
+```
+
 ### Change the owner of the cinema database
 
 ```
