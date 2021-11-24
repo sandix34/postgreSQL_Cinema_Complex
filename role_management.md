@@ -31,7 +31,8 @@ postgres=# CREATE ROLE cinema_admin;
 ```
 ### Create a new user paul
 
-```postgres=# CREATE ROLE paul WITH LOGIN ENCRYPTED PASSWORD 'passwordpaul' IN ROLE cinema_admin;
+```
+postgres=# CREATE ROLE paul WITH LOGIN ENCRYPTED PASSWORD 'passwordpaul' IN ROLE cinema_admin;
 CREATE ROLE
 postgres=# 
 ```
